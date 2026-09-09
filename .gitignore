@@ -1,0 +1,5 @@
+*.dll
+*langserver*
+*packer_compiled.lua
+*.pem
+lazy-lock.json
