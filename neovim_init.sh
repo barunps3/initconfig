@@ -24,11 +24,11 @@
 # 10. git pull
 #
 
-CONFIG="$HOME/.config/initconfig/nvim"
+CONFIG="$HOME/.config/initconfig"
 if [ -d "$CONFIG/.git" ];then
     echo "[INFO] pulling nvim changes"
     git -C "$CONFIG" pull --ff-only
-    cp -r $CONFIG/* "$HOME/.config/nvim/"
+    cp -r $CONFIG/nvim/* "$HOME/.config/nvim/"
 else
     echo "[WARNING] failed to find initconfig directory in $CONFIG"
 fi
