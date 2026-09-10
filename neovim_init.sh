@@ -28,29 +28,6 @@ CONFIG="$HOME/.config/initconfig"
 if [ -d "$CONFIG/.git" ];then
     echo "[INFO] pulling nvim changes"
     git -C "$CONFIG" pull --ff-only
-    cp -r $CONFIG/nvim/* "$HOME/.config/nvim/"
 else
     echo "[WARNING] failed to find initconfig directory in $CONFIG"
 fi
-
-#  Remove our wrapper from PATH
-WRAPPER_DIR="$HOME/.local/bin"
-OLD_PATH="$PATH"
-PATH="$(echo "$PATH" | tr ':' '\n' | grep -v "^$WRAPPER_DIR$" | paste -sd ':' -)"
-export PATH
-
-# Find the actual Neovim executable
-NVIM="$(command -v nvim)"
-echo "[INFO] Original path of nvim: $NVIM"
-
-# Restore PATH
-PATH="$OLD_PATH"
-export PATH
-
-if [ -z "$NVIM" ]; then
-    echo "Error: could not find real nvim" >&2
-    exit 1
-fi
-
-echo "[INFO] Starting $NVIM"
-exec "$NVIM" "$@"

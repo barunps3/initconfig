@@ -3,3 +3,4 @@
 *packer_compiled.lua
 *.pem
 lazy-lock.json
+nvim_sync.log
